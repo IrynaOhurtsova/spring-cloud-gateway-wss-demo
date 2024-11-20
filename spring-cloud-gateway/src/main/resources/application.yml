@@ -1,0 +1,21 @@
+websocket-server:
+  base-url:
+    ws://localhost:8082
+
+spring:
+  application:
+    name: spring-cloud-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: websocket_route
+          uri: ${websocket-server.base-url}
+          predicates:
+            - Path=/ws/**
+        - id: http_route
+          uri: ${websocket-server.base-url}
+          predicates:
+            - Path=/ws-test/**
+
+server:
+  port: 8081
