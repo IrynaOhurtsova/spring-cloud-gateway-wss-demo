@@ -29,6 +29,8 @@ public class AuthFilter implements GlobalFilter, Ordered {
         }
         if (counter.incrementAndGet() % 2 == 0) {
             log.info("AuthFilter: allow");
+            exchange.getResponse().getHeaders().add("X-Auth-Status", "allowed");
+            exchange.getRequest().mutate().headers(h -> h.set("User-Id", "12345"));
             return chain.filter(exchange);
         } else {
             log.info("AuthFilter: deny");

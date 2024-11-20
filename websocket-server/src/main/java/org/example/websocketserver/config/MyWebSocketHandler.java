@@ -21,6 +21,8 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         String sessionId = session.getId();
         sessions.put(sessionId, session);
+        String userId = (String) session.getAttributes().get("User-Id");
+        sendMessage(sessionId, "Welcome to the server, " + userId + "!");
         log.info("Connected: {}", sessionId);
     }
 
