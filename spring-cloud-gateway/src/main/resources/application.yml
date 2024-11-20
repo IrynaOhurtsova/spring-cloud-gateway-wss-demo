@@ -16,12 +16,16 @@ spring:
             - Path=/ws/connect/**
           filters:
             - RewritePath=/ws/connect/,/ws/
+          metadata:
+            auth: test-auth
         - id: http_route
           uri: ${websocket-server.base-http-url}
           predicates:
             - Path=/ws/test-http/**
           filters:
             - RewritePath=/ws/test-http/,/test/
+          metadata:
+            auth: none
 
 server:
   port: 8081
