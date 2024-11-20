@@ -13,19 +13,15 @@ spring:
         - id: websocket_route
           uri: ${websocket-server.base-wss-url}
           predicates:
-            - Path=/ws/**
-        #          predicates:
-        #            - Path=/ws/connect/**
-        #          filters:
-        #            - RewritePath=/ws/connect/,/ws/
+            - Path=/ws/connect/**
+          filters:
+            - RewritePath=/ws/connect/,/ws/
         - id: http_route
           uri: ${websocket-server.base-http-url}
           predicates:
-            - Path=/test/**
-#          predicates:
-#            - Path=/ws/test-http/**
-#          filters:
-#            - RewritePath=/ws/test-http/,/test/
+            - Path=/ws/test-http/**
+          filters:
+            - RewritePath=/ws/test-http/,/test/
 
 server:
   port: 8081
